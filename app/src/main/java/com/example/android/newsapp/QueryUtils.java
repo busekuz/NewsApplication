@@ -34,8 +34,9 @@ public final class QueryUtils {
                 JSONObject latestNew = resultArray.getJSONObject(i);
                 String titleNew = latestNew.getString("webTitle");
                 String titleSec = latestNew.getString("sectionName");
+                String url = latestNew.getString("webUrl");
 
-                New techNew = new New(titleNew,titleSec);
+                New techNew = new New(titleNew,titleSec, url);
 
                 news.add(techNew);
                 Log.v("QueryUtils","Title -- " + titleNew + "Section -- " + titleSec + "length:  " + resultArray.length());

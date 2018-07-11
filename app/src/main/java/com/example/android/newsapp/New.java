@@ -4,11 +4,12 @@ public class New {
 
     private String title;
     private String section;
-
-    public New(String nTitle, String nSection){
+    private String url;
+    public New(String nTitle, String nSection, String nUrl){
 
         title = nTitle;
         section = nSection;
+        url = nUrl;
     }
 
     public String getSection() {
@@ -20,5 +21,8 @@ public class New {
         return title;
     }
 
+    public String getUrl(){
+        return url;
+    }
 
 }
