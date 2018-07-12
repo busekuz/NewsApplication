@@ -3,42 +3,41 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:layout_height="match_parent"
-    android:paddingBottom="4dp"
+    android:padding="16dp"
     tools:context=".MainActivity">
 
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:id="@+id/item"
+        >
 
         <TextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Title of the new"
-            android:padding="12dp"
+            android:fontFamily="serif"
             />
 
         <TextView
             android:textAlignment="center"
             android:id="@+id/section"
-            android:paddingLeft="16dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Section of the new"
             android:textColor="#adabab"
+            android:fontFamily="serif"
+            android:paddingVertical="8dp"
             />
 
+
     </LinearLayout>
-    <View android:id="@+id/separator"
-        android:background="#3d0407"
-        android:layout_width = "fill_parent"
-        android:layout_height="0.5dp"
-        android:layout_marginHorizontal="8dp"
-        android:layout_centerVertical ="true"
-        android:layout_alignParentTop="true"/>
+
+
 
 </RelativeLayout>

@@ -11,11 +11,34 @@
      limitations under the License.
 -->
 <!-- Layout for a list of earthquakes -->
-<ListView xmlns:android="http://schemas.android.com/apk/res/android"
-
-    android:id="@+id/list"
-    android:orientation="vertical"
+<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:divider="@null"
-    android:dividerHeight="1dp"/>
+    android:orientation="vertical">
+
+    <TextView
+    android:textAlignment="center"
+    android:padding="8dp"
+    android:textSize="16dp"
+    android:id="@+id/text"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Latest news about technology"
+    android:textColor="#adabab"
+    android:fontFamily="serif" />
+
+
+    <ListView xmlns:android="http://schemas.android.com/apk/res/android"
+
+        android:id="@+id/list"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider= "@drawable/new_divider"
+        android:dividerHeight="0.5dp"
+        />
+
+
+</LinearLayout>
+
+
