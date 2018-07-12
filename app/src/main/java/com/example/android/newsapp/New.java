@@ -5,11 +5,17 @@ public class New {
     private String title;
     private String section;
     private String url;
-    public New(String nTitle, String nSection, String nUrl){
+    private String body;
+    public New(String nTitle, String nSection, String nUrl,String nBody){
 
         title = nTitle;
         section = nSection;
         url = nUrl;
+        body = nBody;
+    }
+
+    public String getBody() {
+        return body;
     }
 
     public String getSection() {

@@ -16,9 +16,8 @@ public final class QueryUtils {
 
     }
 
-
     public static ArrayList<New> extractJson(){
-        CustomUrl myurl = new CustomUrl("https://content.guardianapis.com/search?q=%27technology%27&api-key=01216ad2-f602-42c3-a90b-0a1f5e980937");
+        CustomUrl myurl = new CustomUrl("https://content.guardianapis.com/search?q=%27technology%27&show-fields=all&api-key=01216ad2-f602-42c3-a90b-0a1f5e980937");
         String SAMPLE_JSON_RESPONSE = null;
         try {
             SAMPLE_JSON_RESPONSE = myurl.getHTML();
@@ -37,11 +36,15 @@ public final class QueryUtils {
             for(i = 0 ; i < resultArray.length() ; i++){
 
                 JSONObject latestNew = resultArray.getJSONObject(i);
+                JSONObject fields = latestNew.getJSONObject("fields");
+                String body = fields.getString("body");
+
                 String titleNew = latestNew.getString("webTitle");
                 String titleSec = latestNew.getString("sectionName");
                 String url = latestNew.getString("webUrl");
 
-                New techNew = new New(titleNew,titleSec, url);
+
+                New techNew = new New(titleNew,titleSec, url,body);
 
                 news.add(techNew);
                 Log.v("QueryUtils","Title -- " + titleNew + "Section -- " + titleSec + "length:  " + resultArray.length());
