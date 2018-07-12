@@ -17,14 +17,11 @@ import java.util.List;
 public class NewsAdapter extends ArrayAdapter<New> {
 
 
-    public NewsAdapter(Context context, List<New> earthquakes) {
-        super(context, 0, earthquakes);
+    public NewsAdapter(Context context, List<New> news) {
+        super(context, 0, news);
     }
 
-    /**
-     * Returns a list item view that displays information about the earthquake at the given position
-     * in the list of earthquakes.
-     */
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // Check if there is an existing list item view (called convertView) that we can reuse,

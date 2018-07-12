@@ -2,8 +2,10 @@ package com.example.android.newsapp;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -18,9 +20,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        NewAsync a = new NewAsync();
+        a.execute();
 
-
-       ArrayList<New> news = QueryUtils.extractJson();
+    }
+    private void updateUi(ArrayList<New> news) {
 
         ListView newsListView = (ListView) findViewById(R.id.list);
 
@@ -31,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         newsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                // Find the current earthquake that was clicked on
+                // Find the current new that was clicked on
                 New currentNew = adapter.getItem(position);
 
                 // Convert the String URL into a URI object (to pass into the Intent constructor)
@@ -45,4 +49,19 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-}
+    public class NewAsync extends AsyncTask<Void,Void,ArrayList<New>>{
+
+
+        @Override
+        protected ArrayList<New> doInBackground(Void... voids) {
+            ArrayList<New> news = QueryUtils.extractJson();
+            Log.v("MainActivity","asynctask do in background" + news);
+
+            return news;
+        }
+
+        protected void onPostExecute(ArrayList<New> news) {
+            updateUi(news);
+        }
+        }
+    }
