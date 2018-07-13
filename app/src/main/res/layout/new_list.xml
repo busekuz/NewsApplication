@@ -12,28 +12,68 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:id="@+id/item"
         >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/image"
+            android:padding="8dp"
+            android:paddingRight="12dp"
+            />
 
-        <TextView
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="12dp"
+            android:layout_height="wrap_content">
+
+
+            <TextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Title of the new"
             android:fontFamily="serif"
+            android:textSize="14dp"
+            android:paddingTop="4dp"
             />
 
-        <TextView
-            android:textAlignment="center"
-            android:id="@+id/section"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Section of the new"
-            android:textColor="#adabab"
-            android:fontFamily="serif"
-            android:paddingVertical="8dp"
-            />
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:textAlignment="center"
+                    android:id="@+id/section"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Section of the new"
+                    android:textColor="#adabab"
+                    android:fontFamily="serif"
+                    android:paddingVertical="8dp"
+                    />
+
+                <TextView
+                    android:fontFamily="serif"
+                    android:textColor="#adabab"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/date"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentBottom="true"
+                    android:textSize="12dp"
+                    />
+
+            </RelativeLayout>
+
+
+
+
+        </LinearLayout>
+
+
 
 
     </LinearLayout>

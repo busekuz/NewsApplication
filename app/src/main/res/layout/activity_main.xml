@@ -16,7 +16,16 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <Spinner
+        android:id="@+id/sort_by_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:scrollbarSize="24dp"
+         />
+
     <TextView
+
     android:textAlignment="center"
     android:padding="8dp"
     android:textSize="16dp"
@@ -24,7 +33,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="Latest news about technology"
-    android:textColor="#adabab"
+    android:textColor="#606060"
     android:fontFamily="serif" />
 
 

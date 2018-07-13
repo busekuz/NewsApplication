@@ -16,6 +16,7 @@
             android:layout_width="match_parent"
             android:orientation="vertical"
             android:layout_height="wrap_content">
+
             <TextView
                 android:fontFamily="serif"
                 android:layout_width="match_parent"
@@ -23,13 +24,29 @@
                 android:id="@+id/title_of_body"
                 android:text="Title"
                 android:textSize="24dp"
-                android:textColor="#ff7517"
                 android:paddingBottom="8dp"
+                android:textColor="#ff570c"
                 />
 
             <TextView
+                android:paddingTop="8dp"
                 android:fontFamily="serif"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/headline"
+                android:text="headline"
 
+                />
+
+            <ImageView
+                android:padding="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/article_image"/>
+
+            <TextView
+                android:fontFamily="serif"
+                android:paddingTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/body_of_new"
