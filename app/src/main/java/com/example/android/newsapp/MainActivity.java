@@ -2,6 +2,8 @@ package com.example.android.newsapp;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View.OnClickListener;
@@ -95,27 +97,28 @@ public class MainActivity extends AppCompatActivity {
 
     //Updates ListView on main page
     private void updateUi(ArrayList<New> news) {
-        ListView newsListView = (ListView) findViewById(R.id.list);
-        adapter = new NewsAdapter(this, news);
-        newsListView.setAdapter(adapter);
+        RecyclerView newsListView = (RecyclerView) findViewById(R.id.list);
 
-/*
+        LinearLayoutManager manager = new LinearLayoutManager(this);
+        newsListView.setLayoutManager(manager);
+        //newsListView.setHasFixedSize(true);
+        //adapter = new NewsAdapter(this, news);
+        adapter = new NewsAdapter(this,R.layout.new_list,news);
+        newsListView.setAdapter( adapter );
+
+        /*
         inputSearch = (EditText) findViewById(R.id.inputSearch);
         inputSearch.addTextChangedListener(new TextWatcher() {
-
             @Override
             public void onTextChanged(CharSequence cs, int arg1, int arg2, int arg3) {
                 // When user changed the Text
                 MainActivity.this.adapter.getFilter().filter(cs);
             }
-
             @Override
             public void beforeTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
             }
-
             @Override
             public void afterTextChanged(Editable arg0) {
-
             }
         });*/
     }
