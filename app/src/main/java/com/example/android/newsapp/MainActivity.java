@@ -1,6 +1,9 @@
 package com.example.android.newsapp;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View.OnClickListener;
 
 import com.bumptech.glide.Glide;
@@ -20,6 +23,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -29,6 +33,7 @@ import android.widget.AdapterView.OnItemSelectedListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -36,6 +41,9 @@ public class MainActivity extends AppCompatActivity {
     String[] category = {"Trend","Technology", "Art", "Economy", "Sports", "Fashion", "Health","Food","Travel","Music"};
     private ArrayAdapter<String> dataForContexts;
     Spinner spinner;
+    EditText inputSearch;
+    NewsAdapter adapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +55,18 @@ public class MainActivity extends AppCompatActivity {
         createSpinner();
         spinner.setOnItemSelectedListener(spinnerClickListener);
 
+
+
     }
+
+    public void buttonClick (View v){
+        Intent intent = getIntent();
+        finish();
+        startActivity(intent);
+    }
+
+
+
 
 
     OnItemSelectedListener spinnerClickListener = new OnItemSelectedListener() {
@@ -74,23 +93,45 @@ public class MainActivity extends AppCompatActivity {
         spinner.setAdapter(spinnerArrayAdapter);
     }
 
-
-
-
-
-
-
-
     //Updates ListView on main page
     private void updateUi(ArrayList<New> news) {
         ListView newsListView = (ListView) findViewById(R.id.list);
-        final NewsAdapter adapter = new NewsAdapter(this, news);
+        adapter = new NewsAdapter(this, news);
         newsListView.setAdapter(adapter);
+
+/*
+        inputSearch = (EditText) findViewById(R.id.inputSearch);
+        inputSearch.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void onTextChanged(CharSequence cs, int arg1, int arg2, int arg3) {
+                // When user changed the Text
+                MainActivity.this.adapter.getFilter().filter(cs);
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable arg0) {
+
+            }
+        });*/
     }
 
-
-
     public class NewAsync extends AsyncTask<String, Void, ArrayList<New>> {
+        ProgressDialog progDialog = new ProgressDialog(MainActivity.this);
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progDialog.setMessage("Loading...");
+            progDialog.setIndeterminate(false);
+            progDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            progDialog.setCancelable(true);
+            progDialog.show();
+        }
 
         @Override
         protected ArrayList<New> doInBackground(String... categories) {
@@ -101,8 +142,12 @@ public class MainActivity extends AppCompatActivity {
 
         protected void onPostExecute(ArrayList<New> news) {
             // SetText etc.
+            progDialog.dismiss();
             updateUi(news);
         }
+
+
+
     }
 
 

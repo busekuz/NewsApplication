@@ -20,6 +20,7 @@ import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.GlideBuilder;
@@ -38,6 +39,7 @@ public class NewsAdapter extends ArrayAdapter<New> {
         super(context, 0, news);
         this.context = context;
     }
+
 
 
     @Override
@@ -96,5 +98,7 @@ public class NewsAdapter extends ArrayAdapter<New> {
 
         return listItemView;
     }
+
+
 
 }

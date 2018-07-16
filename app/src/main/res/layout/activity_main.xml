@@ -16,13 +16,39 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <Spinner
-        android:id="@+id/sort_by_spinner"
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="8dp"
-        android:scrollbarSize="24dp"
-         />
+        android:layout_margin="8dp">
+
+
+        <Spinner
+            android:id="@+id/sort_by_spinner"
+            android:layout_width="0dp"
+            android:layout_weight="8"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:scrollbarSize="24dp"
+            android:paddingVertical="8dp"
+            />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="fill_parent"
+            android:src="@drawable/ic_reload"
+            android:onClick="buttonClick"
+            />
+    </LinearLayout>
+
+    <!--<EditText android:id="@+id/inputSearch"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="Search a key word"
+        android:textSize="14dp"
+        android:layout_margin="8dp"
+        android:inputType="textVisiblePassword"/> -->
 
     <TextView
 
@@ -32,12 +58,15 @@
     android:id="@+id/text"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="Latest news about technology"
+    android:text="@string/latest"
     android:textColor="#606060"
     android:fontFamily="serif" />
 
 
-    <ListView xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+
+    <android.support.v7.widget.RecyclerView
 
         android:id="@+id/list"
         android:orientation="vertical"
