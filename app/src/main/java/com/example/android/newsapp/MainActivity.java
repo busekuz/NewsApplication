@@ -37,6 +37,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+
 public class MainActivity extends AppCompatActivity {
 
     public static final String LOG_TAG = MainActivity.class.getName();
@@ -45,30 +50,52 @@ public class MainActivity extends AppCompatActivity {
     Spinner spinner;
     EditText inputSearch;
     NewsAdapter adapter;
+    private RecyclerView recycler;
+    ProgressDialog progressDialog;
+    ArrayList<New> news;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        NewAsync object = new NewAsync();
-        object.execute(category[0]);
+
 
         createSpinner();
         spinner.setOnItemSelectedListener(spinnerClickListener);
 
+        GuardianAPIService service = RetrofitClientInstance.getRetrofitInstance().create(GuardianAPIService.class);
 
+        final Call<ArrayList<New>> call = service.listNews(category[0],"all","01216ad2-f602-42c3-a90b-0a1f5e980937");
+
+        call.enqueue(new Callback<ArrayList<New>>() {
+            @Override
+            public void onResponse(Call<ArrayList<New>> call, Response<ArrayList<New>> response) {
+                if(response.isSuccessful()){
+                    updateUi((ArrayList<New>) call);
+                }
+                else{
+                    Toast.makeText(MainActivity.this, "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
+                }
+            }
+            @Override
+            public void onFailure(Call<ArrayList<New>> call, Throwable t) {
+                Toast.makeText(MainActivity.this, "error!" , Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
+
+
+
+
+
 
     public void buttonClick (View v){
         Intent intent = getIntent();
         finish();
         startActivity(intent);
     }
-
-
-
 
 
     OnItemSelectedListener spinnerClickListener = new OnItemSelectedListener() {
@@ -78,8 +105,10 @@ public class MainActivity extends AppCompatActivity {
             Log.v("MainActivity","items position:" + position +item.toString());
             Intent intent;
             if (item != null) {
-                NewAsync object = new NewAsync();
-                object.execute(item.toString());
+
+
+                //NewAsync object = new NewAsync();
+                //object.execute(item.toString());
             }
         }
         @Override
@@ -95,63 +124,15 @@ public class MainActivity extends AppCompatActivity {
         spinner.setAdapter(spinnerArrayAdapter);
     }
 
-    //Updates ListView on main page
-    private void updateUi(ArrayList<New> news) {
-        RecyclerView newsListView = (RecyclerView) findViewById(R.id.list);
 
+    //Updates ListView on main page
+    private void updateUi(ArrayList<New> news){
+        RecyclerView newsListView = (RecyclerView) findViewById(R.id.list);
         LinearLayoutManager manager = new LinearLayoutManager(this);
         newsListView.setLayoutManager(manager);
-        //newsListView.setHasFixedSize(true);
-        //adapter = new NewsAdapter(this, news);
-        adapter = new NewsAdapter(this,R.layout.new_list,news);
-        newsListView.setAdapter( adapter );
 
-        /*
-        inputSearch = (EditText) findViewById(R.id.inputSearch);
-        inputSearch.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void onTextChanged(CharSequence cs, int arg1, int arg2, int arg3) {
-                // When user changed the Text
-                MainActivity.this.adapter.getFilter().filter(cs);
-            }
-            @Override
-            public void beforeTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
-            }
-            @Override
-            public void afterTextChanged(Editable arg0) {
-            }
-        });*/
-    }
-
-    public class NewAsync extends AsyncTask<String, Void, ArrayList<New>> {
-        ProgressDialog progDialog = new ProgressDialog(MainActivity.this);
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            progDialog.setMessage("Loading...");
-            progDialog.setIndeterminate(false);
-            progDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            progDialog.setCancelable(true);
-            progDialog.show();
+        //List<Results> realNews = news.getResponse().getResult();
+        adapter = new NewsAdapter(this, news); //    boyleydi : NewsAdapter(this,R.layout.new_list,news);
+        newsListView.setAdapter(adapter);
         }
-
-        @Override
-        protected ArrayList<New> doInBackground(String... categories) {
-            // Parsing JSON file
-            ArrayList<New> news = QueryUtils.extractJson(categories[0]);
-            return news;
-        }
-
-        protected void onPostExecute(ArrayList<New> news) {
-            // SetText etc.
-            progDialog.dismiss();
-            updateUi(news);
-        }
-
-
-
-    }
-
-
 }
