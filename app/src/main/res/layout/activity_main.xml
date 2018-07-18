@@ -37,7 +37,7 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="fill_parent"
-            android:src="@drawable/ic_reload"
+            android:src="@drawable/ic_refresh"
             android:onClick="buttonClick"
             />
     </LinearLayout>
