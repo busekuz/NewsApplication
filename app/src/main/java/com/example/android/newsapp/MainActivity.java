@@ -3,7 +3,6 @@ package com.example.android.newsapp;
 import android.app.ProgressDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,12 +14,10 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemSelectedListener;
-
 import com.example.android.newsapp.Adapter.NewsAdapter;
 import com.example.android.newsapp.Class.New;
 import com.example.android.newsapp.Network.GuardianAPIService;
 import com.example.android.newsapp.Network.RetrofitClientInstance;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -117,7 +114,6 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "error!" , Toast.LENGTH_SHORT).show();
                     }
                 });
-
             }
         }
         @Override
@@ -135,7 +131,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateUi(New news){
-        //Updates ListView on main page
+
+        //Updates RecycleView on main page
 
         LinearLayoutManager manager = new LinearLayoutManager(this);
         recycler.setLayoutManager(manager);
