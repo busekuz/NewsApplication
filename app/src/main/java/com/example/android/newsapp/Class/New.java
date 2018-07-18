@@ -1,13 +1,6 @@
-package com.example.android.newsapp;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.text.ParseException;
-import java.util.Date;
+package com.example.android.newsapp.Class;
 
-
-import android.util.Log;
-
-import okhttp3.Response;
+        import retrofit2.Call;
 
 public class New {
 

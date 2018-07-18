@@ -1,4 +1,4 @@
-package com.example.android.newsapp;
+package com.example.android.newsapp.Class;
 
 public class Results {
 
@@ -6,7 +6,7 @@ public class Results {
     private String webPublicationDate;
     private String sectionName;
     private String webUrl;
-    Fields field;
+    Fields fields;
 
     Results(String rWebTitle,String rWebPublicationDate ,String rSectionName,String rWebUrl){
         webTitle = rWebTitle;
@@ -17,7 +17,7 @@ public class Results {
 
 
     public Fields getField() {
-        return field;
+        return fields;
     }
 
     public String getSectionName() {

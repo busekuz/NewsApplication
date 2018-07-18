@@ -1,11 +1,11 @@
-package com.example.android.newsapp;
+package com.example.android.newsapp.Class;
 
 import java.util.List;
 
 public class ResponseOfNew {
 
     private String status;
-    List<Results> result;
+    List<Results> results;
    // Results[] result;
     ResponseOfNew(String responseStatus){
         status = responseStatus;
@@ -15,7 +15,7 @@ public class ResponseOfNew {
         return status;
     }
 
-    public List<Results> getResult() {
-        return result;
+    public List<Results> getResults() {
+        return results;
     }
 }
