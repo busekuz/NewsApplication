@@ -43,7 +43,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
     public NewsAdapter(Context context,ArrayList<New> news) {
         super();
         this.context = context;
-        this.news = news; //bu niye böyle
+        this.news = news;
     }
 
 
@@ -115,9 +115,9 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
         public MyViewHolder(@NonNull View listItemView) {
             super(listItemView);
              titleView = (TextView) listItemView.findViewById(R.id.title);
-             secView = (TextView) listItemView.findViewById(R.id.section);
-             iconImg = (ImageView) listItemView.findViewById(R.id.image);
-             dateView = (TextView) listItemView.findViewById(R.id.date);
+             secView   = (TextView) listItemView.findViewById(R.id.section);
+             iconImg   = (ImageView) listItemView.findViewById(R.id.image);
+             dateView  = (TextView) listItemView.findViewById(R.id.date);
 
         }
 
