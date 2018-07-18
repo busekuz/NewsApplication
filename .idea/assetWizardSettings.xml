@@ -15,8 +15,8 @@
                           <map>
                             <entry key="assetSourceType" value="FILE" />
                             <entry key="opacityPercent" value="90" />
-                            <entry key="outputName" value="ic_refresh" />
-                            <entry key="sourceFile" value="C:\Users\busek\Desktop\refresh.svg" />
+                            <entry key="outputName" value="ic_news_report" />
+                            <entry key="sourceFile" value="C:\Users\busek\Desktop\news-report.svg" />
                           </map>
                         </option>
                       </PersistentState>
