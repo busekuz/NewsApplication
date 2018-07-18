@@ -1,4 +1,4 @@
-package com.example.android.newsapp;
+package com.example.android.newsapp.Activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -16,9 +16,13 @@ import com.bumptech.glide.load.DecodeFormat;
 import com.bumptech.glide.module.AppGlideModule;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
+import com.example.android.newsapp.R;
 
 
 public class NewsIntent extends AppCompatActivity {
+
+    //Flags for HTML code to text.
+
     public static final int FROM_HTML_MODE_COMPACT = 63;
     public static final int FROM_HTML_MODE_LEGACY = 0;
     public static final int FROM_HTML_OPTION_USE_CSS_COLORS = 256;
@@ -30,15 +34,19 @@ public class NewsIntent extends AppCompatActivity {
     public static final int FROM_HTML_SEPARATOR_LINE_BREAK_PARAGRAPH = 1;
     public static final int TO_HTML_PARAGRAPH_LINES_CONSECUTIVE = 0;
     public static final int TO_HTML_PARAGRAPH_LINES_INDIVIDUAL = 1;
+
     TextView bodyView;
     TextView title;
     ImageView aImage;
     String thumbnail;
     TextView headlineView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news_intent);
+
+        //Sets texts and images of new's details.
 
         bodyView = findViewById(R.id.body_of_new);
         bodyView.setText(Html.fromHtml(getIntent().getStringExtra("bodyString")));
@@ -58,6 +66,8 @@ public class NewsIntent extends AppCompatActivity {
         headlineView.setText(" " + Html.fromHtml(getIntent().getStringExtra("headline")));
 
     }
+
+    //Reformats HTML code to display as text.
 
     @SuppressWarnings("deprecation")
     public static Spanned fromHtml(String html){

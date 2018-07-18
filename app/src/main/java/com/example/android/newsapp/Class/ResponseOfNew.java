@@ -6,7 +6,7 @@ public class ResponseOfNew {
 
     private String status;
     List<Results> results;
-   // Results[] result;
+
     ResponseOfNew(String responseStatus){
         status = responseStatus;
     }
