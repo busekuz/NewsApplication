@@ -21,6 +21,9 @@ import com.example.android.newsapp.Activity.NewsIntent;
 import com.example.android.newsapp.Class.Results;
 import com.example.android.newsapp.R;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder>  {
 
@@ -38,14 +41,10 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
 
-        //New currentNew =getItem(position);
-
-
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.new_list, viewGroup, false);
         final MyViewHolder myViewHolder = new MyViewHolder(view);
-
-
         return myViewHolder;
+
     }
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, final int position) {
@@ -58,6 +57,8 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
 
         //Changes date format.
         String dates = date_of.substring(0, 10);
+
+        // yyyy-mm-dd to yyyy.mm.dd
         dates = dates.substring(0, 4) + '/' + dates.substring(5);
         dates = dates.substring(0, 7) + '/' + dates.substring(8);
 
@@ -92,17 +93,16 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
-        TextView titleView;
-        TextView secView;
-        TextView dateView;
-        ImageView iconImg;
+
         public MyViewHolder(@NonNull View listItemView) {
-             super(listItemView);
-             titleView = (TextView) listItemView.findViewById(R.id.title);
-             secView   = (TextView) listItemView.findViewById(R.id.section);
-             iconImg   = (ImageView) listItemView.findViewById(R.id.image);
-             dateView  = (TextView) listItemView.findViewById(R.id.date);
+            super(listItemView);
+            ButterKnife.bind(this, listItemView);
         }
+
+        @BindView(R.id.title) TextView titleView;
+        @BindView(R.id.section) TextView secView;
+        @BindView(R.id.image) ImageView iconImg;
+        @BindView(R.id.date) TextView dateView;
 
     }
 }
