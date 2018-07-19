@@ -41,17 +41,14 @@ public class MainActivity extends AppCompatActivity {
     String[] category = {"Trend","Turkey", "Technology", "Art", "Economy", "Sports", "Health", "Travel", "Food"};
     @BindView(R.id.sort_by_spinner) Spinner spinner;
 
-    NewsAdapter adapter;
-
     @BindView(R.id.list) RecyclerView recycler;
+    NewsAdapter adapter;
 
     ProgressDialog progressBar;
 
 
-
-    //Info for API request.
-    int i = 0;
-    String key = "01216ad2-f602-42c3-a90b-0a1f5e980937";
+    int i = 0; // Category position.
+    String key = "01216ad2-f602-42c3-a90b-0a1f5e980937"; // Api-key of content.
     GuardianAPIService service = RetrofitClientInstance.getRetrofitInstance().create(GuardianAPIService.class);
 
 
@@ -60,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        progressBar = new ProgressDialog(MainActivity.this);
+        progressBar = new ProgressDialog(MainActivity.this); // Creates loading bar.
         progressBar.setMessage("Loading...");
         progressBar.show();
 
@@ -80,6 +77,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void callRequest() {
+
+        // Gets response from our JSON request.
 
         Call<New> call = service.listNews(category[i], "all", key);
 
@@ -112,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent;
         if (item != null) {
             i = position;
-            callRequest();
+            callRequest(); //In case of choosing another category, calls request again.
         }
 
     }
@@ -120,9 +119,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void createSpinner() {
 
-        //Creates spinner list by adapter in order to choose categories
-
         ButterKnife.bind(this);
+
+        //Creates spinner list by adapter in order to choose categories.
         ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, category);
         spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_item);
         spinner.setAdapter(spinnerArrayAdapter);
@@ -131,8 +130,7 @@ public class MainActivity extends AppCompatActivity {
     private void updateUi(New news) {
         ButterKnife.bind(this);
 
-        //Updates RecycleView on main page
-
+        //Updates RecycleView on main page.
         LinearLayoutManager manager = new LinearLayoutManager(this);
         recycler.setLayoutManager(manager);
         adapter = new NewsAdapter(this, news);

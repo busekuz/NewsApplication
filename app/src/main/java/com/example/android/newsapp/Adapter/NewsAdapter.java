@@ -46,11 +46,12 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
         return myViewHolder;
 
     }
+
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, final int position) {
         final Results currentNew = news.getResponse().getResults().get(position);
 
-
+        // Sets textviews.
         myViewHolder.titleView.setText(currentNew.getWebTitle());
         myViewHolder.secView.setText(currentNew.getSectionName());
         String date_of = currentNew.getWebPublicationDate();
@@ -74,7 +75,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
         myViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // When a new view is clicked ->  go to the new
+                // When a new view is clicked ->  go to the new & send related content.
                 Intent i = new Intent(context, NewsIntent.class);
                 i.putExtra("bodyString", currentNew.getField().getBody());
                 i.putExtra("titleOfBody", currentNew.getWebTitle());
@@ -88,11 +89,15 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
 
     @Override
     public int getItemCount() {
+
         return news.getResponse().getResults().size();
+
     }
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
+
+        // Create views using Butterknife.
 
         public MyViewHolder(@NonNull View listItemView) {
             super(listItemView);
