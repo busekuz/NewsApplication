@@ -1,4 +1,4 @@
-# newsApp
+# News Application
 
 News App, has multiple sections of news (Technologoy, Art, Travel, Food etc.) and displays their content from The Guardian. 
 
